@@ -8,12 +8,17 @@ import socket
 from bs4 import BeautifulSoup
 from time import sleep
 from datetime import datetime
+import json
+
 router_url = 'http://10.0.0.138/'
 
 def login():
     print 'setting up session. . .'
     s = requests.Session()
-    s.auth = ('Admin','zubur1')
+    with open("creds.txt","r") as f:
+        json_data = open("creds.txt","r").read()
+        data = json.loads(json_data)
+        s.auth = (data['user'], data['pass'])
     return s
 
 def reboot():
