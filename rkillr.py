@@ -2,13 +2,10 @@
 # version 1.1 by adamn
 # works for my weird-ass router, DGN2200v2
 
-import requests
-import re
-import socket
+import re, sys, socket, json, requests
 from bs4 import BeautifulSoup
 from time import sleep
 from datetime import datetime
-import json
 
 router_url = 'http://10.0.0.138/'
 
@@ -76,23 +73,28 @@ def macs():
 def life(hostname, port):
     print 'checking for pulse for ' + str(hostname) + ':' + str(port) + '. . .'
     keep_going = True
+    bars = ['|','/','-','\\',]
+    i = 0
     while keep_going:
         try:
             sock = socket.socket()
             sock.connect((hostname,port))
-            print 'Alive!'
+            print '[*] Alive!'
             keep_going = False
         except socket.error as e:
-            print 'still dead...'
+            sys.stdout.write("\r[%c] still dead. . . " %bars[i % len(bars)])
+            sys.stdout.flush()
             #print str(e)
             sleep(1)
+            i = i + 1
         finally:
             sock.close()
 
 def main():
     startTime = datetime.now()
     life('10.0.0.138', 80)
-    #reboot()
+    reboot()
+    print 'waiting a while. . . '
     sleep(5)
     life('10.0.0.138', 80)
     life('www.google.com', 80)
