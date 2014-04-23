@@ -92,7 +92,7 @@ def life(hostname, port):
 def main():
     startTime = datetime.now()
     life('10.0.0.138', 80)
-    reboot()
+    #reboot()
     sleep(5)
     life('10.0.0.138', 80)
     life('www.google.com', 80)
