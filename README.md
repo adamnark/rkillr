@@ -9,7 +9,7 @@ To run, install the following python packages:
 `beatifulsoup4
 requests`
 
-you should also have a text file 'creds.txt' that has your user+pass for the router in json formatting, like so:
+Place a text file `creds.txt` that has your user+pass for the router in json formatting, like so:
 
 `{
 	"user" : "Admin",
