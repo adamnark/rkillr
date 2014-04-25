@@ -85,7 +85,7 @@ def life(hostname, port):
             sys.stdout.write("\r[%c] still dead. . . " %bars[i % len(bars)])
             sys.stdout.flush()
             #print str(e)
-            sleep(1)
+            sleep(0.5)
             i = i + 1
         finally:
             sock.close()
