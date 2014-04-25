@@ -79,7 +79,7 @@ def life(hostname, port):
         try:
             sock = socket.socket()
             sock.connect((hostname,port))
-            print '[*] Alive!'
+            print '\n[*] Alive!'
             keep_going = False
         except socket.error as e:
             sys.stdout.write("\r[%c] still dead. . . " %bars[i % len(bars)])
