@@ -2,10 +2,14 @@
 # version 1.1 by adamn
 # works for my weird-ass router, DGN2200v2
 
-import re, sys, socket, json, requests
-from bs4 import BeautifulSoup
-from time import sleep
-from datetime import datetime
+try:
+    import re, sys, socket, json, requests
+    from bs4 import BeautifulSoup
+    from time import sleep
+    from datetime import datetime
+except:
+    print "you're missing some packages. . ."
+    exit()
 
 router_url = 'http://10.0.0.138/'
 
@@ -95,7 +99,11 @@ def main():
     life('10.0.0.138', 80)
     reboot()
     print 'waiting a while. . . '
-    sleep(5)
+    for i in range (1,6)[::-1]:
+        sleep(1)
+        sys.stdout.write(str(i) + ' ')
+        sys.stdout.flush()
+    print "OK! Let's Go!"
     life('10.0.0.138', 80)
     life('www.google.com', 80)
     print 'execution time: ' + str(datetime.now()-startTime)
