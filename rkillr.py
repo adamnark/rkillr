@@ -9,6 +9,7 @@ try:
     from datetime import datetime
 except:
     print "you're missing some packages. . ."
+    print "pip install requests beautifulsoup4"
     exit()
 
 router_url = 'http://10.0.0.138/'
@@ -16,9 +17,8 @@ router_url = 'http://10.0.0.138/'
 def login():
     print 'setting up session. . .'
     s = requests.Session()
-    with open("creds.txt","r") as f:
-        json_data = open("creds.txt","r").read()
-        data = json.loads(json_data)
+    with open("creds.txt") as f:
+        data = json.loads(f.read())
         s.auth = (data['user'], data['pass'])
     return s
 
